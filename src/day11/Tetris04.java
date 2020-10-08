@@ -531,20 +531,20 @@ public class Tetris04 extends JFrame{
 		if(keyCode != KeyEvent.VK_UP && keyCode != KeyEvent.VK_DOWN && keyCode != KeyEvent.VK_LEFT && keyCode != KeyEvent.VK_RIGHT) {
 			block.y++;
 		}else {
-			// »ó => status change
+			// ìƒ => status change
 			if(keyCode == KeyEvent.VK_UP) {
 				changeBlockStatus();
 			}
-			// ÇÏ
+			// í•˜
 			if(keyCode == KeyEvent.VK_DOWN) {
 				block.y++;
 				flagDown = true;
 			}
-			// ÁÂ
+			// ì¢Œ
 			if(keyCode == KeyEvent.VK_LEFT) {
 				block.x--;
 			}
-			// ¿ì
+			// ìš°
 			if(keyCode == KeyEvent.VK_RIGHT) {
 				block.x++;
 			}
@@ -594,9 +594,11 @@ public class Tetris04 extends JFrame{
 				needCleanLineCount -= cnt10;
 				lblRow.setText(needCleanLineCount + "");
 				
+				// commit test
+				
 				if(needCleanLineCount <= 0) {
 					lblRow.setText(0 + "");
-					JOptionPane.showMessageDialog(null, "´ç½ÅÀÌ ÀÌ°å½À´Ï´Ù.");
+					JOptionPane.showMessageDialog(null, "ë‹¹ì‹ ì´ ì´ê²¼ìŠµë‹ˆë‹¤..");
 					flagInfo = false;
 					return;
 				}
@@ -604,7 +606,7 @@ public class Tetris04 extends JFrame{
 					 || stack2D[3][3] != 0 || stack2D[3][4] != 0 || stack2D[3][5] != 0
 					 || stack2D[3][6] != 0 || stack2D[3][7] != 0 || stack2D[3][8] != 0
 					 || stack2D[3][9] != 0) {
-					JOptionPane.showMessageDialog(null, "´ç½ÅÀÌ Á³½À´Ï´Ù.");
+					JOptionPane.showMessageDialog(null, "ë‹¹ì‹ ì´ ì¡ŒìŠµë‹ˆë‹¤.");
 					lblRow.setText(0 + "");
 					flagInfo = false;
 					return;
