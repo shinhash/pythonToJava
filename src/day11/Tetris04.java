@@ -598,7 +598,7 @@ public class Tetris04 extends JFrame{
 				
 				if(needCleanLineCount <= 0) {
 					lblRow.setText(0 + "");
-					JOptionPane.showMessageDialog(null, "당신이 이겼습니다..");
+					JOptionPane.showMessageDialog(null, "당신이 이겼습니다.");
 					flagInfo = false;
 					return;
 				}
