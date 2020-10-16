@@ -553,10 +553,10 @@ public class Tetris04 extends JFrame{
 		
 		try {
 			setBlock2DWithBlock();
-			moveStackBlock2Scrin();
 		}catch(Exception ex) {
 			flagColBound = true;
 		}
+		moveStackBlock2Scrin();
 		
 		boolean flagCollision = isCollision();
 		
@@ -577,7 +577,7 @@ public class Tetris04 extends JFrame{
 				int cnt10 = 20 - notFullStack.size();
 				
 				for(int i=0; i<cnt10; i++) {
-					notFullStack.add(cnt10, "0,0,0,0,0,0,0,0,0,0");
+					notFullStack.add(i, "0,0,0,0,0,0,0,0,0,0");
 				}
 				for(int i=0; i<notFullStack.size(); i++) {
 					System.out.println(notFullStack.get(i));
