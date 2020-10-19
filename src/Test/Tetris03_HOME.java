@@ -21,6 +21,8 @@ public class Tetris03_HOME extends JFrame{
 	public Block block = new Block();
 	
 	private JPanel contentPane;
+	private JPanel nextBlock;
+	private JPanel[][] nextBlockPane = new JPanel[4][3];
 	private JLabel lbl;
 	private BevelBorder border = new BevelBorder(BevelBorder.RAISED);
 	
@@ -40,6 +42,9 @@ public class Tetris03_HOME extends JFrame{
 	public int[][] stack2D = new int[20][10];
 	public int[][] scrin2D = new int[20][10];
 	
+	private static int nextBlockKind = (int)(Math.random()*7+1);
+	private int blockKind = nextBlockKind;
+	
 	
 	
 	/**
@@ -47,6 +52,9 @@ public class Tetris03_HOME extends JFrame{
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
+		
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -291,9 +299,7 @@ public class Tetris03_HOME extends JFrame{
 	 * @param flagCollision 
 	 */
 	public void myRender() {
-	
 		
-//		contentPane.removeAll();
 		for(int y=0; y<scrin2D.length; y++) {
 			for(int x=0; x<scrin2D[y].length; x++) {
 				
@@ -349,34 +355,8 @@ public class Tetris03_HOME extends JFrame{
 				if(scrin2D[y][x] == 17) {
 					lbl2D[y][x].setBackground(new Color(255-(30), 0, 255-(30)));
 				}
-				
-				
-				
-				
-				// my action
-//				if(block2D[y][x] == block.kind) {
-//					lbl = new JLabel();
-//					lbl.setForeground(Color.BLACK);
-//					lbl.setBackground(new Color(255, 0, 0));
-//					lbl.setOpaque(true);
-//					lbl.setBorder(border);
-//					lbl.setBounds(x*25, y*25, blockWH, blockWH);
-//					contentPane.add(lbl);
-//					lbl2D[y][x] = lbl;
-//				}
-//				if(stack2D[y][x] != 0) {
-//					lbl = new JLabel();
-//					lbl.setForeground(Color.BLACK);
-//					lbl.setBackground(Color.GRAY);
-//					lbl.setOpaque(true);
-//					lbl.setBorder(border);
-//					lbl.setBounds(x*25, y*25, blockWH, blockWH);
-//					contentPane.add(lbl);
-//					lbl2D[y][x] = lbl;
-//				}
 			}
 		}
-//		contentPane.repaint();
 	}
 	
 	
@@ -415,8 +395,6 @@ public class Tetris03_HOME extends JFrame{
 	 * stack to stack2D array method
 	 */
 	public void moveBlock2Stack() {
-		
-		
 		for(int y=0; y<block2D.length; y++) {
 			for(int x=0; x<block2D[y].length; x++) {
 				if(block2D[y][x] > 0) {
@@ -447,27 +425,6 @@ public class Tetris03_HOME extends JFrame{
 			System.out.println();
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	/**
-	 * stack2d view method
-	 */
-//	public void printStack2D() {
-//		System.out.println();
-//		System.out.println("======================================stack2d");
-//		for(int y=0; y<block2D.length; y++) {
-//			for(int x=0; x<block2D[y].length; x++) {
-//				System.out.print(stack2D[y][x] + "  ");
-//			}
-//			System.out.println();
-//		}
-//	}
-	
 	
 	
 	
@@ -519,6 +476,75 @@ public class Tetris03_HOME extends JFrame{
 	
 	
 	
+	
+	
+	public void setNextBlockScrin() {
+		
+		for(int y=0; y<4; y++) {
+			for(int x=0; x<3; x++) {
+				nextBlockPane[y][x].setBackground(new Color(255, 255, 255));
+			}
+		}
+		
+		
+		if(nextBlockKind == 1) {
+			nextBlockPane[1][1].setBackground(new Color(255, 0, 0));
+			nextBlockPane[1][2].setBackground(new Color(255, 0, 0));
+			nextBlockPane[2][1].setBackground(new Color(255, 0, 0));
+			nextBlockPane[2][2].setBackground(new Color(255, 0, 0));
+			
+		}
+		if(nextBlockKind == 2) {
+			nextBlockPane[0][2].setBackground(new Color(255, 102, 0));
+			nextBlockPane[1][2].setBackground(new Color(255, 102, 0));
+			nextBlockPane[2][2].setBackground(new Color(255, 102, 0));
+			nextBlockPane[3][2].setBackground(new Color(255, 102, 0));
+			
+		}
+		if(nextBlockKind == 3) {
+			nextBlockPane[1][0].setBackground(new Color(255, 204, 0));
+			nextBlockPane[1][1].setBackground(new Color(255, 204, 0));
+			nextBlockPane[2][1].setBackground(new Color(255, 204, 0));
+			nextBlockPane[2][2].setBackground(new Color(255, 204, 0));
+			
+		}
+		if(nextBlockKind == 4) {
+			nextBlockPane[1][2].setBackground(new Color(0, 153, 0));
+			nextBlockPane[1][1].setBackground(new Color(0, 153, 0));
+			nextBlockPane[2][1].setBackground(new Color(0, 153, 0));
+			nextBlockPane[2][0].setBackground(new Color(0, 153, 0));
+			
+		}
+		if(nextBlockKind == 5) {
+			nextBlockPane[1][1].setBackground(new Color(102, 102, 204));
+			nextBlockPane[2][0].setBackground(new Color(102, 102, 204));
+			nextBlockPane[2][1].setBackground(new Color(102, 102, 204));
+			nextBlockPane[2][2].setBackground(new Color(102, 102, 204));
+			
+		}
+		if(nextBlockKind == 6) {
+			nextBlockPane[1][0].setBackground(new Color(153, 153, 153));
+			nextBlockPane[2][0].setBackground(new Color(153, 153, 153));
+			nextBlockPane[3][0].setBackground(new Color(153, 153, 153));
+			nextBlockPane[3][1].setBackground(new Color(153, 153, 153));
+			
+		}
+		if(nextBlockKind == 7) {
+			nextBlockPane[1][2].setBackground(new Color(255, 0, 255));
+			nextBlockPane[2][2].setBackground(new Color(255, 0, 255));
+			nextBlockPane[3][2].setBackground(new Color(255, 0, 255));
+			nextBlockPane[3][1].setBackground(new Color(255, 0, 255));
+			
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * presskey action method
 	 * @param e
@@ -537,23 +563,23 @@ public class Tetris03_HOME extends JFrame{
 		boolean flagDown = false;
 		
 		
-		// �� => status change
+		// up key
 		if(e.getKeyCode() == KeyEvent.VK_UP) {
 			changeBlockStatus();
 		}
 		
-		// ��
+		// down key
 		if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 			block.y++;
 			flagDown = true;
 		}
 		
-		// ��
+		// left key
 		if(e.getKeyCode() == KeyEvent.VK_LEFT) {
 			block.x--;
 		}
 		
-		// ��
+		// right key
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			block.x++;
 		}
@@ -588,7 +614,7 @@ public class Tetris03_HOME extends JFrame{
 				
 				if(needCleanLineCount <= 0) {
 					needCleanLineCount = 0;
-					JOptionPane.showMessageDialog(null, "����� �̰���ϴ�.");
+					JOptionPane.showMessageDialog(null, "you win.");
 					flagInfo = false;
 					return;
 				}
@@ -596,13 +622,20 @@ public class Tetris03_HOME extends JFrame{
 					 || stack2D[3][3] != 0 || stack2D[3][4] != 0 || stack2D[3][5] != 0
 					 || stack2D[3][6] != 0 || stack2D[3][7] != 0 || stack2D[3][8] != 0
 					 || stack2D[3][9] != 0) {
-					JOptionPane.showMessageDialog(null, "����� �����ϴ�.");
+					JOptionPane.showMessageDialog(null, "you lose!.");
 					flagInfo = false;
 					return;
 				}
 				
 				
 				block.init();
+				
+				block.kind = blockKind;
+				nextBlockKind = (int)(Math.random()*7+1);
+				blockKind = nextBlockKind;
+				setNextBlockScrin();
+				
+				
 				setBlock2DWithBlock();
 				moveStackBlock2Scrin();
 			}
@@ -668,7 +701,7 @@ public class Tetris03_HOME extends JFrame{
 				
 				if(needCleanLineCount <= 0) {
 					needCleanLineCount = 0;
-					JOptionPane.showMessageDialog(null, "����� �̰���ϴ�.");
+					JOptionPane.showMessageDialog(null, "you win");
 					flagInfo = false;
 					return;
 				}
@@ -676,13 +709,19 @@ public class Tetris03_HOME extends JFrame{
 					 || stack2D[3][3] != 0 || stack2D[3][4] != 0 || stack2D[3][5] != 0
 					 || stack2D[3][6] != 0 || stack2D[3][7] != 0 || stack2D[3][8] != 0
 					 || stack2D[3][9] != 0) {
-					JOptionPane.showMessageDialog(null, "����� �����ϴ�.");
+					JOptionPane.showMessageDialog(null, "you lose");
 					flagInfo = false;
 					return;
 				}
 				
 				
 				block.init();
+				
+				block.kind = blockKind;
+				nextBlockKind = (int)(Math.random()*7+1);
+				blockKind = nextBlockKind;
+				setNextBlockScrin();
+				
 				setBlock2DWithBlock();
 				moveStackBlock2Scrin();
 			}
@@ -699,6 +738,9 @@ public class Tetris03_HOME extends JFrame{
 	
 	
 	public Tetris03_HOME() {
+		
+		
+		
 		addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -713,13 +755,96 @@ public class Tetris03_HOME extends JFrame{
 		contentPane.setLayout(null);
 		
 		JLabel lblDisplay = new JLabel("\uC9C0\uC6CC\uC57C\uD560 \uD589\uC758 \uC218");
-		lblDisplay.setBounds(290, 10, 99, 15);
+		lblDisplay.setBounds(312, 10, 99, 15);
 		contentPane.add(lblDisplay);
 		
 		lblRow = new JLabel("10");
 		lblRow.setBounds(432, 10, 57, 15);
 		contentPane.add(lblRow);
+	
 		
+		
+		
+		
+		for(int y=0; y<4; y++) {
+			for(int x=0; x<3; x++) {
+				nextBlock = new JPanel();
+				nextBlock.setBackground(Color.WHITE);
+				nextBlock.setBounds(312+(41*x), 70+(41*y), 40, 40); // x, y, width, height
+				nextBlockPane[y][x] = nextBlock;
+				contentPane.add(nextBlockPane[y][x]);
+			}
+		}
+		nextBlockKind = (int)(Math.random()*7+1);
+		blockKind = nextBlockKind;
+		setNextBlockScrin();
+		
+//		
+//		
+//		JPanel panel01 = new JPanel();
+//		panel01.setBackground(Color.WHITE);
+//		panel01.setBounds(312, 71, 40, 40);
+//		contentPane.add(panel01);
+//		
+//		JPanel panel02 = new JPanel();
+//		panel02.setBackground(Color.WHITE);
+//		panel02.setBounds(353, 71, 40, 40);
+//		contentPane.add(panel02);
+//		
+//		JPanel panel03 = new JPanel();
+//		panel03.setBackground(Color.WHITE);
+//		panel03.setBounds(395, 71, 40, 40);
+//		contentPane.add(panel03);
+//		
+//		JPanel panel04 = new JPanel();
+//		panel04.setBackground(Color.WHITE);
+//		panel04.setBounds(312, 112, 40, 40);
+//		contentPane.add(panel04);
+//		
+//		JPanel panel05 = new JPanel();
+//		panel05.setBackground(Color.WHITE);
+//		panel05.setBounds(353, 112, 40, 40);
+//		contentPane.add(panel05);
+//		
+//		JPanel panel06 = new JPanel();
+//		panel06.setBackground(Color.WHITE);
+//		panel06.setBounds(395, 112, 40, 40);
+//		contentPane.add(panel06);
+//		
+//		JPanel panel07 = new JPanel();
+//		panel07.setBackground(Color.WHITE);
+//		panel07.setBounds(312, 153, 40, 40);
+//		contentPane.add(panel07);
+//		
+//		JPanel panel08 = new JPanel();
+//		panel08.setBackground(Color.WHITE);
+//		panel08.setBounds(353, 153, 40, 40);
+//		contentPane.add(panel08);
+//		
+//		JPanel panel09 = new JPanel();
+//		panel09.setBackground(Color.WHITE);
+//		panel09.setBounds(395, 153, 40, 40);
+//		contentPane.add(panel09);
+//		
+//		JPanel panel10 = new JPanel();
+//		panel10.setBackground(Color.WHITE);
+//		panel10.setBounds(312, 194, 40, 40);
+//		contentPane.add(panel10);
+//		
+//		JPanel panel11 = new JPanel();
+//		panel11.setBackground(Color.WHITE);
+//		panel11.setBounds(353, 194, 40, 40);
+//		contentPane.add(panel11);
+//		
+//		JPanel panel12 = new JPanel();
+//		panel12.setBackground(Color.WHITE);
+//		panel12.setBounds(395, 194, 40, 40);
+//		contentPane.add(panel12);
+//		
+//		JLabel lblNextBlock = new JLabel("NEXT BLOCK");
+//		lblNextBlock.setBounds(312, 46, 81, 15);
+//		contentPane.add(lblNextBlock);
+//		
 		
 		
 		for(int y=0; y<scrin2D.length; y++) {

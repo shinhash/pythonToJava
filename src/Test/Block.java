@@ -2,19 +2,22 @@ package Test;
 
 public class Block {
 	
+	int[] kindArr = new int[2];
 	
 	public Block() {
 		this.kind = kind;
 		int rand = (int) (Math.random()*7+1);
 		this.kind = rand;
-//		this.kind = 2;
 	}
 	
 	
 	public void init() {
-		int rand = (int) (Math.random()*7+1);
-		this.kind = rand;
-//		this.kind = 2;
+		
+//		kindArr[0] = (int) (Math.random()*7+1);
+//		kindArr[1] = kindArr[0];
+		
+//		int rand = (int) (Math.random()*7+1);
+//		this.kind = rand;
 		this.status = 1; 
 		this.x = 5;      
 		this.y = 1;
